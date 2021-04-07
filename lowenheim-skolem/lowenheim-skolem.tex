@@ -1,0 +1,35 @@
+\documentclass[tikz,convert={outext=.svg,command=\unexpanded{pdf2svg \infile\space\outfile}},multi=false]{standalone}
+\usepackage[utf8]{inputenc}
+
+\usetikzlibrary{automata}% tikz package already loaded by 'tikz' option
+\begin{document}
+
+\newcommand\kappared{\textcolor{red}{\kappa}}
+
+\begin{tikzpicture}[scale=0.8]
+\tikzstyle{M}=[fill=yellow!10];
+\tikzstyle{N}=[fill=red!10];
+\tikzstyle{ls}=[line width=1mm, ->];
+\node (init) {\begin{tikzpicture}
+\draw[M] (0, 0) rectangle (3, 3);
+\node at (1, 2) {$\mathcal M$};
+\end{tikzpicture}};
+
+\node (asc) at (8, 3) {\begin{tikzpicture}[scale=0.7]
+\draw[N] (-0.5, -0.5) rectangle (4, 4);
+\draw[M] (0, 0) rectangle (3, 3);
+\node at (1, 2) {$\mathcal M$};
+\node at (0.5, 3.5) {$\mathcal N$};
+\end{tikzpicture}};
+
+\node (dec) at (7.5, -3) {\begin{tikzpicture}[scale=0.7]
+\draw[M] (0, 0) rectangle (3, 3);
+\draw[N] (0.5, 0.5) rectangle (2, 2);
+\node at (1, 2.5) {$\mathcal M$};
+\node at (1, 1.5) {$\mathcal N$};
+\end{tikzpicture}};
+
+\draw[ls] (init) edge node[above, rotate=20] {$\kappared \geq |\mathcal M|$} (asc);
+\draw[ls] (init) edge node[above, rotate=-20] {$\kappared < |\mathcal M|$} (dec);
+\end{tikzpicture}
+\end{document}

@@ -1,0 +1,34 @@
+init({width: 400, height: 128});
+
+ctx.font = "18px Arial";
+
+function drawBackground() {
+  clear();
+  drawImage("file:///home/fschwarz/Dropbox/imagesforwikipedia/gifedit/img/robot.png", 0, 0, 128, 128);
+  drawImage("file:///home/fschwarz/Dropbox/imagesforwikipedia/gifedit/img/earth.png", 400-128, 0, 128, 128);
+}
+
+let yState = 24;
+let yReward = 48;
+let yAction = 100;
+
+drawBackground(0);
+ctx.strokeText("s", 128,yState);
+addFrame({delay: 1000});
+
+
+for(let x = 128; x < 400-150; x+=10)
+{
+	drawBackground(0);
+	ctx.strokeText("s", 128,yState);
+	ctx.strokeText("a", x,yAction);	
+	addFrame({delay: 10});
+}
+
+for(let x = 400-150; x > 128; x-=10)
+{
+	drawBackground(0);
+	ctx.strokeText("s'", x,yState);
+	ctx.strokeText("r", x,yReward);	
+	addFrame({delay: 10});
+}

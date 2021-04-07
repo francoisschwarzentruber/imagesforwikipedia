@@ -1,0 +1,60 @@
+init({width: 200, height: 200});
+
+clear();
+ctx.font = "30px Arial";
+
+
+
+function draw(i1, i2, o)
+{
+	clear();
+	ctx.strokeStyle = "blue";
+	ctx.lineWidth = 10;
+	line(100, 0, 100, 100);
+
+	if(o == 1)
+		strokeArrow(100, 0, 100, 50);
+	else if(o == -1)
+		strokeArrow(100, 100, 100, 50);
+
+	ctx.strokeStyle = "red";
+	ctx.lineWidth = 5;
+	line(100, 100, 0, 200);
+
+	if(i1 == 1)
+		strokeArrow(100, 100, 50, 150);
+	else if(i1 == -1)
+		strokeArrow(0, 200, 50, 150);
+
+	line(100, 100, 200, 200);
+
+	if(i2 == 1)
+		strokeArrow(100, 100, 150, 150);
+	else if(i2 == -1)
+		strokeArrow(200, 200, 150, 150);
+
+	ctx.fillStyle = "lightgray";
+	fillCircle(100, 100, 20);
+
+}
+
+
+draw(0, 0, 0);
+addFrame({delay:1000});
+
+for(let i1 of [-1, 1])
+for(let i2 of [-1, 1])
+for(let o of [-1, 1])
+if(((i1 == 1) && (i2 == 1)) || (o == 1))
+{
+	draw(i1, i2, o);
+	addFrame({delay:500});
+}
+
+for(let i = 1; i < 4; i++)
+for(let o of [-1, 1])
+{
+	draw(1, 1, o);
+	addFrame({delay:500});
+}
+

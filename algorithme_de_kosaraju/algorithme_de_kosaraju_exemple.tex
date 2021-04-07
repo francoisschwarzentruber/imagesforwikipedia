@@ -1,0 +1,54 @@
+\documentclass[tikz,convert={outext=.svg,command=\unexpanded{pdf2svg \infile\space\outfile}},multi=false]{standalone}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+
+
+\begin{document}
+
+\newcommand{\sommet}[3]{\node[circle, draw=black] (#1) at (#2,#3) {$#1$};}
+\newcommand{\fleche}[2]{\draw[fleche] (#1) to (#2);}
+\newcommand{\flecheinv}[2]{\draw[fleche] (#2) to (#1);}
+
+
+\newcommand\colorboxsanssep[2]{{\colorbox{#1}{\hspace{-1mm}\ensuremath{{#2}\hspace{-1mm}}}}}
+
+
+
+
+
+\begin{tikzpicture}
+
+\node at (-4, 0) { $G$};
+\node at (-4, -2.5) { $G^t$};
+\node {
+\begin{tikzpicture}
+\tikzstyle{fleche}=[->, line width = 1.5]
+\sommet v 0 0
+\sommet s 0 {-1}
+\sommet t 1 0
+\sommet w 3 0
+\sommet q 5 {-1}
+\fleche s v
+\fleche v t
+\fleche t s
+\fleche t w
+\fleche w q
+\end{tikzpicture}};
+
+
+\node at (0, -2.5){
+\begin{tikzpicture}
+\tikzstyle{fleche}=[->, line width = 1.5]
+\sommet v 0 0
+\sommet s 0 {-1}
+\sommet t 1 0
+\sommet w 3 0
+\sommet q 5 {-1}
+\flecheinv s v
+\flecheinv v t
+\flecheinv t s
+\flecheinv t w
+\flecheinv w q
+\end{tikzpicture}};
+\end{tikzpicture}
+\end{document}

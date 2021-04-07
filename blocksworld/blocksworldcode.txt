@@ -1,0 +1,81 @@
+init({width: 180, height: 120});
+
+ctx.font = "20px Arial";
+
+let xa = 64;
+let ya = 64;
+let xb = 64;
+let yb = 32;
+let xc = 128;
+let yc = 64;
+
+function drawFrame()
+{
+
+  clear();
+
+  drawFillRectangle(xa, ya, 32, 32, "black", "cyan"); 
+  drawFillRectangle(xb, yb, 32, 32, "black", "yellow"); 
+  drawFillRectangle(xc, yc, 32, 32, "black", "orange");
+
+  ctx.fillStyle = "black";
+  ctx.fillText("A", xa+8, ya+24);
+	ctx.fillText("B", xb+8, yb+24);
+	ctx.fillText("C", xc+8, yc+24);
+}
+
+
+
+drawFrame();
+
+addFrame({delay: 1000});
+
+
+for(let t = 0; t < 1; t+=0.1)
+{
+  yb = 32*(1-t)+8*t;
+  drawFrame();
+  addFrame({delay: 50});
+}
+
+for(let t = 0; t < 1; t+=0.1)
+{
+  xb = 64*(1-t)+16*t;
+  drawFrame();
+  addFrame({delay: 50});
+}
+
+for(let t = 0; t < 1; t+=0.1)
+{
+  yb = 8*(1-t)+64*t;
+  drawFrame();
+  addFrame({delay: 50});
+}
+
+addFrame({delay: 500});
+
+for(let t = 0; t < 1; t+=0.1)
+{
+  yc = 64*(1-t)+8*t;
+  drawFrame();
+  addFrame({delay: 50});
+}
+
+for(let t = 0; t < 1; t+=0.1)
+{
+  xc = 128*(1-t)+64*t;
+  drawFrame();
+  addFrame({delay: 50});
+}
+
+for(let t = 0; t < 1; t+=0.1)
+{
+  yc = 8*(1-t)+32*t;
+  drawFrame();
+  addFrame({delay: 50});
+}
+
+addFrame({delay: 1000});
+
+
+

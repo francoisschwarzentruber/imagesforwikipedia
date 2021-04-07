@@ -1,0 +1,12 @@
+ \newcommand{\tupleautomatesomme}[3]{\lettresurzerounn{#1\\#2\\#3}}
+\newcommand{\lettresurzerounn}[1]{\left(\hspace{-1.8mm}\begin{array}{c}#1 \end{array}\hspace{-1.8mm}\right)\hspace{-1mm}}
+
+ \begin{tikzpicture}
+\tikzstyle{state}=[draw];
+\node[state, text width=1.5cm, initial, initial above, initial text={},final] (q0) {Pas de retenue};
+\node[state, text width=1.5cm] (q1) at (4.5, 0) {1 en retenue};
+\draw[-latex] (q0) edge[loop, -latex,loop left] node[left] {$\tupleautomatesomme 0 0 0,  \tupleautomatesomme 0 1 1,  \tupleautomatesomme 1 0 1$} (q0);
+\draw[-latex] (q1) edge[loop, -latex,loop right] node[right] {$\tupleautomatesomme 1 1 1, \tupleautomatesomme 0 1 0, \tupleautomatesomme 1 0 0$} (q1);
+\draw[-latex] (q0) edge[out=30, in=150] node[above] {$\tupleautomatesomme 1 1 0$} (q1);
+\draw[-latex] (q1) edge[out=-150, in=-30] node[below] {$\tupleautomatesomme 0 0 1$} (q0);
+\end{tikzpicture}

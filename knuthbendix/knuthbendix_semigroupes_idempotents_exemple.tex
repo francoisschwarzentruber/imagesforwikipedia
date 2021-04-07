@@ -1,0 +1,92 @@
+\documentclass[tikz,convert={outext=.svg,command=\unexpanded{pdf2svg \infile\space\outfile}},multi=false]{standalone}
+\usepackage[utf8]{inputenc}
+
+\usetikzlibrary{automata}% tikz package already loaded by 'tikz' option
+\begin{document}
+
+
+\newcommand\xm5
+\newcommand\xM{10}
+\newcommand{\ensembleequations}{
+$\begin{array}{ll}
+1\cdot x & = x \\
+x^{-1}\cdot x & = 1 \\
+(x\cdot y) \cdot z & = x \cdot (y \cdot z)
+\end{array}$}
+
+\newcommand{\monsystemedereecriture}{
+$\begin{array}{ll}
+1\cdot x &  \rightarrow x \\
+x^{-1}\cdot x &  \rightarrow 1 \\
+(x\cdot y) \cdot z&  \rightarrow x \cdot (y \cdot z) \\
+x^{-1} \cdot (x \cdot y) & \rightarrow y \\
+1^{-1} & \rightarrow 1 \\
+x \cdot 1&  \rightarrow x \\
+(x^{-1})^{-1} & \rightarrow x \\
+x \cdot x^{-1} & \rightarrow 1 \\
+x \cdot (x^{-1} \cdot y) & \rightarrow y \\
+(x \cdot y)^{-1}&  \rightarrow y^{-1} x^{-1}
+\end{array}$~~~~}
+
+\newcommand\ok{%
+\raisebox{-1mm}{%
+\begin{tikzpicture}[scale=0.5]
+\node [circle, fill=green!70!black, minimum height=5mm] at (0.3, -0.1) {};
+\draw[line width=0.8mm, white] (0, 0) -- (0.2, -0.3) -- (0.6, 0.1);
+\end{tikzpicture}}}
+\newcommand\notok{%
+\raisebox{-1mm}{%
+\begin{tikzpicture}
+\node [circle, fill=red!80!black, minimum height=5mm] at (0.1, 0.09) {};
+\draw[line width=0.8mm, white] (0, 0) -- (0.2, 0.2);
+\draw[line width=0.8mm, white] (0.2, 0) -- (0, 0.2);
+\end{tikzpicture}}}
+
+
+
+
+
+\newcommand{\systemeequationssystemereecriture}[2]{\begin{tikzpicture}\node[fill=red!5] (m)  at (0, 0) {\begin{minipage}{4cm} $\begin{array}{ll}#1\end{array}$\end{minipage}};
+\node[fill=green!10] (m)  at (5, 0) { \begin{minipage}{4cm} $\begin{array}{ll}#2\end{array}$\end{minipage}};
+ \end{tikzpicture}}
+ 
+ 
+ \newcommand{\applicationregle}[1]{\hspace{1cm}\begin{tikzpicture}
+ \node (a) {};
+ \node (b) at (0, -2) {};
+ \draw[-latex, line width=1mm] (a)  edge node[right] {~\footnotesize #1 } (b);
+ \end{tikzpicture}}
+ 
+ \newcommand{\pairecritique}[3]{\raisebox{-5mm}{\footnotesize\begin{tikzpicture}[scale=0.8]\node[fill=blue!10, inner sep=0.5mm] (r) {$#1$};\node[inner sep=0.5mm] (a) at (-2, -1) {$#2$};\node[inner sep=0.5mm] (b) at (2, -1) {$#3$};
+ \draw[->, red] (r) edge (a);
+  \draw[->, blue] (r) edge (b);
+ \end{tikzpicture}}}
+ 
+ \newcommand{\ruletwo}[1]{\colorbox{red!10}{\ensuremath{#1}}}
+\begin{tikzpicture}
+\node {\begin{minipage}{10cm}
+%\begin{center}
+\systemeequationssystemereecriture{(x*y)*z & = x*(y*z) \\ x*x & =x}{}
+
+\applicationregle{Orientation de $(x*y)*z = x*(y*z)$}
+
+\systemeequationssystemereecriture{x*x & =x}{(x*y)*z & \rightarrow x*(y*z)}
+
+\applicationregle{Orientation de $x*x =x$}
+
+\systemeequationssystemereecriture{}{(x*y)*z & \rightarrow x*(y*z) \\ x*x & \rightarrow x}
+
+\applicationregle{Déduction avec \pairecritique{(\ruletwo{x*x})*z}{x*z}{x*(x*z)}}
+
+\systemeequationssystemereecriture{x*z & = x*(x*z)}{(x*y)*z & \rightarrow x*(y*z) \\ x*x & \rightarrow x}
+
+\applicationregle{Orientation de $x*z =x*(x*z)$}
+
+\systemeequationssystemereecriture{}{(x*y)*z & \rightarrow x*(y*z) \\ x*x & \rightarrow x \\ x*(x*z) & \rightarrow x*z }
+
+%\end{center}
+\end{minipage}
+};
+
+\end{tikzpicture}
+\end{document}

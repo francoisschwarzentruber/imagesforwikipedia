@@ -1,0 +1,93 @@
+\documentclass[tikz,convert={outext=.svg,command=\unexpanded{pdf2svg \infile\space\outfile}},multi=false]{standalone}
+\usepackage[utf8]{inputenc}
+
+\usetikzlibrary{automata,positioning}% tikz package already loaded by 'tikz' option
+
+\begin{document}
+
+
+
+\newcommand\graphebasesommets{\node[etat] (w) at (0, 1) {$w$};
+\node[etat] (x)  at (0, 0) {$x$};
+\node[etat] (y)  at (-4, -1) {$y$ };
+\node[etat] (z)  at (4, -1) {$z$};}
+
+
+\newcommand\graphebasearcs{
+\draw[-latex] (w) edge node[right] {2} (z);
+\draw[-latex] (z) edge node[below] {-7} (x);
+\draw[-latex] (x) edge node[right] {6} (w);
+\draw[-latex] (x) edge node[below] {3} (y);
+\draw[-latex] (y) edge node[left] {4} (w);
+\draw[-latex] (y) edge node[above] {5} (z);
+\draw[-latex] (z) edge[bend left=5] node[below] {-3} (y);
+}
+
+\newcommand{\graphebasearcsnouveauxpoids}{
+\draw[-latex] (w) edge node[right] {1} (z);
+\draw[-latex] (z) edge node[below] {0} (x);
+\draw[-latex] (x) edge node[right] {0} (w);
+\draw[-latex] (x) edge node[below] {0} (y);
+\draw[-latex] (y) edge node[left] {1} (w);
+\draw[-latex] (y) edge node[below] {1} (z);}
+
+
+
+
+\newcommand{\noeudoufsommet}{
+\node[etat, noeudq] (q)  at (-7, -1) {$q$};
+}
+\newcommand{\noeudoufarcs}{
+\draw[-latex, noeudqarc] (q) edge[bend left=20] node[above] {0} (x);
+\draw[-latex, noeudqarc] (q) edge node[above] {0} (y);
+\draw[-latex, noeudqarc] (q) edge[bend left=-10] node[below] {0} (z);
+\draw[-latex, noeudqarc] (q) edge[bend left=20] node[above] {0} (w);
+}
+
+
+
+\newcommand{\bellmanfordpaths}{
+\draw[-latex, bellmanford] (q) edge[bend left=-10] (z);
+\draw[-latex, bellmanford] (z) edge[] (x);
+\draw[-latex, bellmanford] (x) edge[] (w);
+\draw[-latex, bellmanford] (x) edge[] (y);
+\node[ below left=0mm of q, bellmanforddistance] {\footnotesize 0};
+\node[ below right=0mm of y, bellmanforddistance] {\footnotesize -4};
+\node[ below =0mm of x, bellmanforddistance] {\footnotesize  -7};
+\node[ below right =0mm of z, bellmanforddistance] {\footnotesize  0};
+\node[ right=0mm of w, bellmanforddistance] {\footnotesize -1};
+}
+
+
+
+
+\begin{tikzpicture}[xscale=0.5, yscale=1.5]
+\tikzstyle{noeudq} = [draw, fill=blue!30];
+\tikzstyle{noeudqarc} = [draw, blue!70];
+\tikzstyle{bellmanford} = [draw,line width=1mm, orange!100];
+\tikzstyle{bellmanforddistance} = [inner sep=.5mm, orange!50!black, fill=orange!50!white];
+\tikzstyle{etat} = [draw, circle, fill=white];
+
+%1
+%\graphebasesommets
+%\graphebasearcs
+
+%2
+%\graphebasesommets
+%\graphebasearcs
+%\noeudoufsommet
+%\noeudoufarcs
+
+%3
+%\graphebasesommets
+%\graphebasearcs
+%\noeudoufsommet
+%\noeudoufarcs
+%\bellmanfordpaths
+
+%4
+\graphebasesommets
+\graphebasearcsnouveauxpoids
+
+\end{tikzpicture}
+\end{document}

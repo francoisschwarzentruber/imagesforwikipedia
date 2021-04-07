@@ -1,0 +1,119 @@
+\documentclass[convert={outext=.svg,command=\unexpanded{pdf2svg \infile\space\outfile}},multi=false]{standalone}
+\usepackage{tikz}
+\usepackage[utf8]{inputenc}
+
+\begin{document}
+
+
+\newcommand{\poscamera}{0.2}
+\newcommand{\oeil}{
+
+\begin{tikzpicture}
+%%\node[circle, inner sep=2.6mm,fill=green!70] at (0, 0) {};
+\node[circle, fill=white, inner sep=-0.5mm] {\includegraphics[scale=0.08]{Eye_open_font_awesome.png}};
+%\node[circle, draw, ball color=blue!30, inner sep=1mm] {};
+%\node[circle, draw, fill=black, inner sep=0.4mm] {};
+\end{tikzpicture}
+}
+
+\tikzstyle{noeud}=[draw, circle, fill=gray!60!white, inner sep=3mm]
+\tikzstyle{couloir}=[ line width=3mm, gray!60!white, cap=round ]
+\tikzstyle{couloirbord}=[ line width=3.5mm, black ]
+\tikzstyle{couloirvu}=[ line width=2.5mm, yellow, cap=round]
+
+\begin{minipage}{7cm}
+\begin{tikzpicture}
+
+\node[noeud] (a) at (0, 0) {};
+\node[noeud] (b) at (2,-1) {};
+\node[noeud] (c) at (2,1) {};
+\node[noeud] (d) at (4,-1) {};
+\node[noeud] (e) at (5,0.2) {};
+\node[noeud] (f) at (5,1.5) {};
+
+\draw[couloirbord] (a) edge (b);
+\draw[couloirbord] (a) edge (c);
+\draw[couloirbord] (b) edge (c);
+\draw[couloirbord] (c) edge (d);
+\draw[couloirbord] (c) edge (e);
+\draw[couloirbord] (c) edge (f);
+
+
+\draw[couloir] (a) edge (b);
+\draw[couloir] (a) edge (c);
+\draw[couloir] (b) edge (c);
+\draw[couloir] (c) edge (d);
+\draw[couloir] (c) edge (e);
+\draw[couloir] (c) edge (f);
+\end{tikzpicture}
+
+~
+
+
+\begin{tikzpicture}
+\node[noeud] (a) at (0, 0) {};
+\node[noeud] (b) at (2,-1) {};
+\node[noeud] (c) at (2,1) {};
+\node[noeud] (d) at (4,-1) {};
+\node[noeud] (e) at (5,0.2) {};
+\node[noeud] (f) at (5,1.5) {};
+
+\node at (2, -1) {\oeil};
+\draw[couloirbord] (a) edge (b);
+\draw[couloirbord] (a) edge (c);
+\draw[couloirbord] (b) edge (c);
+\draw[couloirbord] (c) edge (d);
+\draw[couloirbord] (c) edge (e);
+\draw[couloirbord] (c) edge (f);
+
+
+\draw[couloir] (a) edge (b);
+\draw[couloir] (a) edge (c);
+\draw[couloir] (b) edge (c);
+\draw[couloir] (c) edge (d);
+\draw[couloir] (c) edge (e);
+\draw[couloir] (c) edge (f);
+
+\draw[couloirvu]  (b) edge (a);
+\draw[couloirvu]  (b) edge (c);
+\end{tikzpicture}
+
+~
+
+
+
+\begin{tikzpicture}
+\node[noeud] (a) at (0, 0) {};
+\node[noeud] (b) at (2,-1) {};
+\node[noeud] (c) at (2,1) {};
+\node[noeud] (d) at (4,-1) {};
+\node[noeud] (e) at (5,0.2) {};
+\node[noeud] (f) at (5,1.5) {};
+
+\draw[couloirbord] (a) edge (b);
+\draw[couloirbord] (a) edge (c);
+\draw[couloirbord] (b) edge (c);
+\draw[couloirbord] (c) edge (d);
+\draw[couloirbord] (c) edge (e);
+\draw[couloirbord] (c) edge (f);
+
+\node at (2, -1) {\oeil};
+\node at (2, 1) {\oeil};
+
+\draw[couloir] (a) edge (b);
+\draw[couloir] (a) edge (c);
+\draw[couloir] (b) edge (c);
+\draw[couloir] (c) edge (d);
+\draw[couloir] (c) edge (e);
+\draw[couloir] (c) edge (f);
+
+\draw[couloirvu] (a) edge (b);
+\draw[couloirvu] (a) edge (c);
+\draw[couloirvu] (b) edge (c);
+\draw[couloirvu] (c) edge (d);
+\draw[couloirvu] (c) edge (e);
+\draw[couloirvu] (c) edge (f);
+\end{tikzpicture}
+\end{minipage}
+
+\end{document}

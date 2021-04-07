@@ -1,0 +1,2 @@
+pdflatex -shell-escape lemme_de_konig.tex
+

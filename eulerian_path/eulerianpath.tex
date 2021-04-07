@@ -1,0 +1,26 @@
+\documentclass[tikz,convert={outext=.svg,command=\unexpanded{pdf2svg \infile\space\outfile}},multi=false]{standalone}
+\usepackage[utf8]{inputenc}
+
+\usetikzlibrary{automata}% tikz package already loaded by 'tikz' option
+
+\begin{document}
+
+\newcommand{\point}[2]{\node[circle, draw, fill=black] (#1#2) at (#1, #2) {};}
+\newcommand{\link}[4]{\draw[line width=0.5mm] (#1#2)-- (#3#4);}
+\begin{tikzpicture}
+\point 00
+\point 20
+\point 02
+\point 22
+\point 11
+\point 13
+\link 0020
+\link 0220
+\link 2202
+\link 2200
+\link 0002
+\link 2022
+\link 2213
+\link 0213
+\end{tikzpicture}
+\end{document}

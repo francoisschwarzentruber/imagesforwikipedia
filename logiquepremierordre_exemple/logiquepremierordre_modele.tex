@@ -1,0 +1,25 @@
+\documentclass[tikz,convert={outext=.svg,command=\unexpanded{pdf2svg \infile\space\outfile}},multi=false]{standalone}
+\usepackage[utf8]{inputenc}
+
+\usetikzlibrary{automata}% tikz package already loaded by 'tikz' option
+
+
+\newcommand{\coeur}{\includegraphics[width=5mm]{red-heart-310227_960_720.png}}
+\newcommand{\bonhomme}{\includegraphics[width=15mm]{snowman-42511_960_720.png}}
+\newcommand{\oiseau}{\includegraphics[width=15mm]{christmas-928329_960_720.png}}
+\newcommand{\cerise}{\includegraphics[width=15mm]{cherry-575547_960_720.png}}
+\begin{document}
+\newcommand\xm5
+\newcommand\xM{10}
+\begin{tikzpicture}
+\tikzstyle{etat} = [];
+\tikzstyle{love} = [->, line width=0.5mm, red];
+\node[etat] (b) at (0, -0.3) {\bonhomme};
+\node[etat] (o)  at (5, 0) {\oiseau};
+\node[etat] (c)  at (5, 5) {\cerise};
+\draw[love] (b) edge[bend left=10mm] node {\coeur} (o);
+\draw[love] (o) edge[loop right, looseness=5] node[fill=white] {\coeur} (o);
+\draw[love] (o) edge[bend left=10mm] node[fill=white] {\coeur} (b);
+\draw[love] (o) edge[] node[fill=white] {\coeur} (c);
+\end{tikzpicture}
+\end{document}

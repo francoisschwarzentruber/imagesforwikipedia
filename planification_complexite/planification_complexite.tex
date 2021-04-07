@@ -1,0 +1,18 @@
+\documentclass[tikz,convert={outext=.svg,command=\unexpanded{pdf2svg \infile\space\outfile}},multi=false]{standalone}
+\usepackage[utf8]{inputenc}
+
+\usetikzlibrary{automata}
+\begin{document}
+
+\begin{tikzpicture}
+\node (c) {\begin{tabular}{c}Planification classique \\ PSPACE-complet\end{tabular}};
+\node (b) at (-3, -2) {EXPTIME-complet};
+\node (k) at (3, -2) {EXPSPACE-complet};
+\node (bk) at (0, -4) {2EXPTIME-complet};
+\draw[->] (c) edge node [left] {+ branchement} (b);
+\draw[->] (c) edge node [right] {+ croyance} (k);
+\draw[->] (b) edge node [left] {+ croyance} (bk);
+\draw[->] (k) edge node [right] {+ branchement} (bk);
+\end{tikzpicture}
+
+\end{document}

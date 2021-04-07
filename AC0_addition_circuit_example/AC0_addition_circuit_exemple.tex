@@ -1,0 +1,96 @@
+\documentclass[tikz,convert={outext=.svg,command=\unexpanded{pdf2svg \infile\space\outfile}},multi=false]{standalone}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+
+\usetikzlibrary{circuits.logic.US}
+\usetikzlibrary{automata}
+\begin{document}
+
+\newcommand{\ystep}{0.7}
+\begin{tikzpicture}[circuit logic US, yscale=1, xscale=1]
+\tikzstyle{input} = [initial, initial text={}];
+\tikzstyle{g} = [red];
+\tikzstyle{p} = [blue];
+\tikzstyle{r} = [green!50!black];
+\node[input] (af) at (0, 1*\ystep) {$a_{n-1}$};
+\node at (0, 0*\ystep) {$\vdots$};
+\node[input] (ai) at (0, -1*\ystep) {$a_{i}$};
+\node[input] (a4) at (0, -2*\ystep) {$a_{i-1}$};
+\node at (0, -3*\ystep) {$\vdots$};
+\node[input] (a2) at (0, -4*\ystep) {$a_{2}$};
+\node[input] (a1) at (0, -5*\ystep) {$a_{1}$};
+\node[input] (a0) at (0, -6*\ystep) {$a_{0}$};
+
+\newcommand{\bnumbery}{7}
+\node[input] (bf) at (0, 1*\ystep-\bnumbery) {$b_{n-1}$};
+\node at (0, 0*\ystep-\bnumbery) {$\vdots$};
+\node[input] (bi) at (0, -1*\ystep-\bnumbery) {$b_{i}$};
+\node[input] (b4) at (0, -2*\ystep-\bnumbery) {$b_{i-1}$};
+\node at (0, -3*\ystep-\bnumbery) {$\vdots$};
+\node[input] (b2) at (0, -4*\ystep-\bnumbery) {$b_{2}$};
+\node[input] (b1) at (0, -5*\ystep-\bnumbery) {$b_{1}$};
+\node[input] (b0) at (0, -6*\ystep-\bnumbery) {$b_{0}$};
+
+\newcommand{\gy}{-11}
+\newcommand{\py}{-6}
+\foreach \x in {0, 1, 2, 4}
+{
+ \node [and gate, g] (g\x) at (2, \gy+\x*\ystep) {and};
+  \node [or gate, p] (p\x) at (2, \py+\x*\ystep) {or};
+
+  \node at (2,\gy+3*\ystep) {$\vdots$};
+   \node at (2,\py+3*\ystep) {$\vdots$};
+   \draw[g] (a\x) -- (g\x.input 1);
+    \draw[g] (b\x) -- (g\x.input 2);
+       \draw[p] (a\x) -- (p\x.input 1);
+    \draw[p] (b\x) -- (p\x.input 2);
+    
+    
+    
+}
+\newcommand\yr{-8}
+\node[and gate, r] (ri0) at (4, \yr-2+0) {and};
+\node[and gate, r] (ri1) at (4,\yr-2+1) {and};
+ \node[r] (ri4) at (4,\yr-2+2) {$\vdots$};
+
+\draw[r] (g0) edge (ri0.input 2);
+\draw[r] (p1) edge[out=-0, in=140] (ri0.input 1);
+\draw[r] (p2) edge[out=0, in=140] (ri0.input 1);
+\draw[r] (p4) edge[out=0, in=140] (ri0.input 1);
+
+\draw[r] (g1) -- (ri1.input 2);	
+\draw[r] (p2) edge[out=0, in=110] (ri1.input 1);
+\draw[r] (p4) edge[out=0, in=110] (ri1.input 1);
+
+
+
+\node[or gate, r]  (ri) at (5, \yr) {or};
+\draw[r] (g4) edge[out=30, in=150] (ri.input 1);
+
+\node[text width=4cm, r] at (8, \yr) {\tiny  le reste pour le $i^{\text{ème}}$ bit est calculé};
+\draw[r](ri0) edge (ri);
+\draw[r](ri1) -- (ri);
+\draw[r](ri4) -- (ri);
+
+\node[xor gate]  (thexor) at (7, -4.5) {xor};
+\foreach \x in {ai, bi}
+{ \draw (\x) -- (thexor.input 1);}
+\draw[r] (ri) -- (thexor.input 1);
+\node[and gate]  (theand) at (7, -5.5) {and};
+\foreach \x in {ai, bi}
+{ \draw (\x) -- (theand.input 1);}
+\draw[r] (ri) -- (theand.input 1);
+
+\node[or gate] (si) at (8, -5) {or};
+\draw (thexor) -- (si.input 1);
+\draw (theand) -- (si.input 2);
+
+\node (output) at (10, -5) {output};
+\draw[->] (si) -- (output);
+
+
+
+
+\end{tikzpicture}
+
+\end{document}

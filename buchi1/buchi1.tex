@@ -1,0 +1,20 @@
+\documentclass[tikz,convert={outext=.svg,command=\unexpanded{pdf2svg \infile\space\outfile}},multi=false]{standalone}
+\usepackage[utf8]{inputenc}
+
+\usetikzlibrary{automata}% tikz package already loaded by 'tikz' option
+
+\begin{document}
+
+
+\begin{tikzpicture}
+\tikzstyle{state} = [draw, circle, fill=white];
+\tikzstyle{init} = [initial, initial text={}];
+\tikzstyle{final} = [double];
+\node[state, init] (q0) {$q_0$};
+\node[state, final] (q1) at (2, 0) {$q_1$};
+\draw[->] (q0) edge[bend left=20] node[above] {$a$} (q1);
+\draw[->] (q1) edge[bend left=20] node[below] {$b$} (q0);
+\draw[->] (q0) edge[loop above] node {$b$} (q0);
+\draw[->] (q1) edge[loop above] node {$a$} (q1);
+\end{tikzpicture}
+\end{document}

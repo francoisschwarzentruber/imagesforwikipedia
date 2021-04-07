@@ -1,0 +1,1805 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- ********************************** Informations ********************************************************
+
+Nature du graphique : représentation des écarts de température globale de surface
+                      par rapport à une température moyenne de référence
+
+Source des données : MetOffice http://www.metoffice.gov.uk/hadobs/hadcrut4/
+                     et plus précisément :
+                     http://www.metoffice.gov.uk/hadobs/hadcrut4/data/current/time_series/HadCRUT.4.4.0.0.annual_ns_avg.txt
+                     pour les données annuelles. 
+                     Les données lissées sont calculées en faisant la moyenne de cinq années consécutives.
+
+Date de création du graphique : 24/02/2016
+
+Plage des données : les données concernent les années de 1850 à 2015.
+                    Les écarts de température sont pris par rapport à la moyenne des températures
+                    des années 1961 à 1990.
+
+Mise à jour des données
+***********************
+Les données annuelles (année, écart de températuer) figurent dans le fichier au sein du groupe "groupe_donnees" sous la forme : 
+
+   <use xlink:href="#donnee" transform="translate(numeroannee,ecarttemperature)"/> 
+
+où numeroannee représente la valeur de l'année concernée, et ecarttemperature l'écart de température cette année là en CENTIEMES de degré °C. 
+
+Les données lissées figurent dans la commande polyline sous la forme d'une suite de couples numeroannee,ecarttemperaturelissee.
+
+Pour mettre à jour le fichier pour les années ultérieures, il suffit de compléter les données pour chaque année supplémentaire rajoutée au graphique. Mettre également à jour l'entête du graphique se trouvant ci-dessous dans "Informations diverses". 
+
+************************************************************************************************************* -->
+
+<!-- Cadre général, contenant les graphiques et autres informations -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="100%"
+   height="100%"
+   viewBox="0 0 900 600"
+   preserveAspectRatio="none"
+   xml:lang="fr"
+   id="svg2630"
+   sodipodi:version="0.32"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="Températures globales.svg"
+   inkscape:output_extension="org.inkscape.output.svg.inkscape"
+   version="1.1">
+  <metadata
+     id="metadata3062">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title>Températures globales</dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs3060" />
+  <sodipodi:namedview
+     inkscape:window-height="1016"
+     inkscape:window-width="1920"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     guidetolerance="10.0"
+     gridtolerance="10.0"
+     objecttolerance="10.0"
+     borderopacity="1.0"
+     bordercolor="#666666"
+     pagecolor="#ffffff"
+     id="base"
+     inkscape:zoom="0.64"
+     inkscape:cx="925.97286"
+     inkscape:cy="583.74732"
+     inkscape:window-x="0"
+     inkscape:window-y="27"
+     inkscape:current-layer="svg2630"
+     showgrid="false"
+     inkscape:window-maximized="0" />
+  <title
+     id="title2632">Températures globales</title>
+  <!-- Informations diverses -->
+  <text
+     x="70"
+     y="40"
+     font-size="25"
+     id="text2634">Anomalies des températures globales de surface (1850-2015)</text>
+  <text
+     x="160"
+     y="70"
+     font-size="25"
+     id="text2638">par rapport à la moyenne 1961-1990 (en °C)</text>
+  <!-- Cadre contenant le graphique des données proprement dit. La commande viewbox contient les quatre paramètres suivants :
+     1830 : début de l'axe des abscisses (année 1830)
+     0    : début de l'axe des ordonnées
+     200  : nombre d'années sur l'axe des abscisses (donc jusqu'en 2030)
+     190  : amplitude de l'axe des ordonnées, en centièmes de degrés Celsius, donc 1.9 degrés Celsius de variations de température -->
+  <svg
+     x="100"
+     y="50"
+     width="700"
+     height="470"
+     viewBox="1830 0 200 190"
+     preserveAspectRatio="none"
+     id="svg2648"
+     version="1.1">
+    <!-- Définition de la représentation des données, des lignes verticales et horizontales -->
+    <defs
+       id="defs2650">
+      <g
+         id="donnee">
+        <circle
+           cx="0"
+           cy="0"
+           id="ellipse2653"
+           stroke="blue"
+           ry="0.25"
+           rx="0.25" />
+      </g>
+      <g
+         id="ligneVerticale">
+        <line
+           x1="0"
+           x2="0"
+           y1="-65"
+           y2="105"
+           id="line2656"
+           stroke-width="0.1"
+           stroke="gray" />
+      </g>
+      <g
+         id="ligneHorizontale">
+        <line
+           x1="1845"
+           x2="2025"
+           y1="0"
+           y2="0"
+           id="line2659"
+           stroke-width="0.1"
+           stroke="gray" />
+      </g>
+    </defs>
+    <!-- Groupe des données. Le dernier paramètre 110 est à ajuster pour centrer le graphique. Le cadre intérieur dessine un cadre
+     autour du graphique -->
+    <g
+       id="groupe_donnees"
+       transform="matrix(1.1887207,0,0,-1.1887207,-366.27109,137.37847)">
+      <rect
+         id="cadre_interieur"
+         x="1845"
+         y="-65"
+         width="180"
+         height="170"
+         style="fill:none;stroke:#808080;stroke-width:0.1" />
+      <!-- ***************** Début des données (numeroannee,ecartdetemperature) ************ -->
+      <!-- Données annuelle. Les écarts de température sont en centièmes de °C -->
+      <use
+         xlink:href="#donnee"
+         transform="translate(1850,-37.5)"
+         id="use23"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1851,-22.3)"
+         id="use25"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1852,-22.4)"
+         id="use27"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1853,-27.1)"
+         id="use29"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1854,-24.6)"
+         id="use31"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1855,-27.1)"
+         id="use33"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1856,-35.2)"
+         id="use35"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1857,-46)"
+         id="use37"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1858,-46.6)"
+         id="use39"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1859,-28.6)"
+         id="use41"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1860,-34.6)"
+         id="use43"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1861,-40.9)"
+         id="use45"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1862,-52.2)"
+         id="use47"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1863,-27.6)"
+         id="use49"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1864,-49)"
+         id="use51"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1865,-27)"
+         id="use53"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1866,-24.5)"
+         id="use55"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1867,-31.4)"
+         id="use57"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1868,-23.1)"
+         id="use59"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1869,-26.2)"
+         id="use61"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1870,-27.5)"
+         id="use63"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1871,-33.3)"
+         id="use65"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1872,-22.7)"
+         id="use67"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1873,-30.3)"
+         id="use69"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1874,-37.4)"
+         id="use71"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1875,-39.7)"
+         id="use73"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1876,-38)"
+         id="use75"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1877,-7.6)"
+         id="use77"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1878,3.5)"
+         id="use79"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1879,-23.2)"
+         id="use81"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1880,-22.9)"
+         id="use83"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1881,-20.6)"
+         id="use85"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1882,-21.5)"
+         id="use87"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1883,-29.5)"
+         id="use89"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1884,-40.8)"
+         id="use91"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1885,-39.1)"
+         id="use93"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1886,-36.9)"
+         id="use95"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1887,-41.9)"
+         id="use97"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1888,-31.2)"
+         id="use99"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1889,-17.3)"
+         id="use101"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1890,-41.9)"
+         id="use103"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1891,-33.8)"
+         id="use105"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1892,-45.7)"
+         id="use107"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1893,-47.4)"
+         id="use109"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1894,-40.6)"
+         id="use111"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1895,-39.3)"
+         id="use113"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1896,-18.9)"
+         id="use115"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1897,-21.1)"
+         id="use117"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1898,-41.6)"
+         id="use119"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1899,-29.1)"
+         id="use121"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1900,-20)"
+         id="use123"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1901,-26.5)"
+         id="use125"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1902,-40.7)"
+         id="use127"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1903,-48.5)"
+         id="use129"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1904,-52.6)"
+         id="use131"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1905,-38.2)"
+         id="use133"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1906,-28.8)"
+         id="use135"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1907,-47)"
+         id="use137"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1908,-51.6)"
+         id="use139"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1909,-53)"
+         id="use141"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1910,-49.4)"
+         id="use143"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1911,-54.7)"
+         id="use145"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1912,-44)"
+         id="use147"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1913,-42.8)"
+         id="use149"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1914,-24.8)"
+         id="use151"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1915,-15.1)"
+         id="use153"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1916,-38.8)"
+         id="use155"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1917,-46.7)"
+         id="use157"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1918,-33.5)"
+         id="use159"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1919,-27.5)"
+         id="use161"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1920,-24.6)"
+         id="use163"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1921,-18.7)"
+         id="use165"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1922,-30.2)"
+         id="use167"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1923,-27.2)"
+         id="use169"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1924,-29.3)"
+         id="use171"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1925,-21.3)"
+         id="use173"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1926,-10.6)"
+         id="use175"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1927,-21)"
+         id="use177"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1928,-20.8)"
+         id="use179"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1929,-35)"
+         id="use181"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1930,-13.6)"
+         id="use183"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1931,-8.3)"
+         id="use185"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1932,-13.4)"
+         id="use187"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1933,-26.9)"
+         id="use189"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1934,-12.6)"
+         id="use191"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1935,-17.3)"
+         id="use193"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1936,-14.1)"
+         id="use195"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1937,-2.4)"
+         id="use197"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1938,-0.3)"
+         id="use199"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1939,-4.7)"
+         id="use201"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1940,2)"
+         id="use203"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1941,2.1)"
+         id="use205"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1942,-2.3)"
+         id="use207"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1943,0.1)"
+         id="use209"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1944,15.2)"
+         id="use211"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1945,3)"
+         id="use213"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1946,-7)"
+         id="use215"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1947,-4)"
+         id="use217"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1948,-3.7)"
+         id="use219"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1949,-7.1)"
+         id="use221"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1950,-17.2)"
+         id="use223"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1951,-5.2)"
+         id="use225"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1952,3)"
+         id="use227"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1953,9.7)"
+         id="use229"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1954,-13.2)"
+         id="use231"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1955,-19)"
+         id="use233"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1956,-26.5)"
+         id="use235"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1957,-0.5)"
+         id="use237"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1958,4.6)"
+         id="use239"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1959,1.6)"
+         id="use241"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1960,-4.9)"
+         id="use243"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1961,3.9)"
+         id="use245"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1962,1.6)"
+         id="use247"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1963,4.8)"
+         id="use249"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1964,-22.2)"
+         id="use251"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1965,-14.1)"
+         id="use253"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1966,-7)"
+         id="use255"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1967,-7.6)"
+         id="use257"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1968,-11.3)"
+         id="use259"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1969,3)"
+         id="use261"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1970,-2.7)"
+         id="use263"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1971,-18.6)"
+         id="use265"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1972,-6.8)"
+         id="use267"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1973,6.4)"
+         id="use269"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1974,-21.2)"
+         id="use271"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1975,-14.6)"
+         id="use273"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1976,-24)"
+         id="use275"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1977,4.5)"
+         id="use277"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1978,-6.3)"
+         id="use279"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1979,5.6)"
+         id="use281"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1980,9.2)"
+         id="use283"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1981,14)"
+         id="use285"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1982,1.2)"
+         id="use287"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1983,19.3)"
+         id="use289"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1984,-1.3)"
+         id="use291"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1985,-2.9)"
+         id="use293"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1986,4.6)"
+         id="use295"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1987,19.1)"
+         id="use297"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1988,20.1)"
+         id="use299"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1989,12.1)"
+         id="use301"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1990,29.7)"
+         id="use303"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1991,25.4)"
+         id="use305"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1992,10.5)"
+         id="use307"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1993,14.5)"
+         id="use309"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1994,20.6)"
+         id="use311"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1995,32.1)"
+         id="use313"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1996,18.2)"
+         id="use315"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1997,38.9)"
+         id="use317"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1998,53.6)"
+         id="use319"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(1999,30.7)"
+         id="use321"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(2000,29.5)"
+         id="use323"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(2001,44)"
+         id="use325"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(2002,49.6)"
+         id="use327"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(2003,50.9)"
+         id="use329"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(2004,45)"
+         id="use331"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(2005,54.4)"
+         id="use333"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(2006,50.5)"
+         id="use335"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(2007,49.3)"
+         id="use337"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(2008,39.5)"
+         id="use339"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(2009,50.6)"
+         id="use341"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(2010,55.9)"
+         id="use343"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(2011,42.2)"
+         id="use345"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(2012,47)"
+         id="use347"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(2013,49.9)"
+         id="use349"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(2014,56.7)"
+         id="use351"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#donnee"
+         transform="translate(2015,74.5)"
+         id="use353"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <!-- Données lissées -->
+      <polyline
+         points="1852,-27.0 1853,-25.0 1854,-27.0 1855,-32.0 1856,-36.0 1857,-37.0 1858,-38.0 1859,-39.0 1860,-41.0 1861,-37.0 1862,-41.0 1863,-39.0 1864,-36.0 1865,-32.0 1866,-31.0 1867,-26.0 1868,-27.0 1869,-28.0 1870,-27.0 1871,-28.0 1872,-30.0 1873,-33.0 1874,-34.0 1875,-31.0 1876,-24.0 1877,-21.0 1878,-18.0 1879,-14.0 1880,-17.0 1881,-24.0 1882,-27.0 1883,-30.0 1884,-34.0 1885,-38.0 1886,-38.0 1887,-33.0 1888,-34.0 1889,-33.0 1890,-34.0 1891,-37.0 1892,-42.0 1893,-41.0 1894,-38.0 1895,-33.0 1896,-32.0 1897,-30.0 1898,-26.0 1899,-28.0 1900,-32.0 1901,-33.0 1902,-38.0 1903,-41.0 1904,-42.0 1905,-43.0 1906,-44.0 1907,-44.0 1908,-46.0 1909,-51.0 1910,-51.0 1911,-49.0 1912,-43.0 1913,-36.0 1914,-33.0 1915,-34.0 1916,-32.0 1917,-32.0 1918,-34.0 1919,-30.0 1920,-27.0 1921,-26.0 1922,-26.0 1923,-25.0 1924,-24.0 1925,-22.0 1926,-21.0 1927,-22.0 1928,-20.0 1929,-20.0 1930,-18.0 1931,-19.0 1932,-15.0 1933,-16.0 1934,-17.0 1935,-15.0 1936,-9.0 1937,-8.0 1938,-4.0 1939,-1.0 1940,-1.0 1941,-1.0 1942,3.0 1943,4.0 1944,2.0 1945,1.0 1946,1.0 1947,-4.0 1948,-8.0 1949,-7.0 1950,-6.0 1951,-3.0 1952,-5.0 1953,-5.0 1954,-9.0 1955,-10.0 1956,-11.0 1957,-8.0 1958,-5.0 1959,1.0 1960,1.0 1961,1.0 1962,-3.0 1963,-5.0 1964,-7.0 1965,-9.0 1966,-12.0 1967,-7.0 1968,-5.0 1969,-7.0 1970,-7.0 1971,-4.0 1972,-9.0 1973,-11.0 1974,-12.0 1975,-10.0 1976,-12.0 1977,-7.0 1978,2.0 1979,5.0 1980,5.0 1981,10.0 1982,8.0 1983,6.0 1984,4.0 1985,8.0 1986,8.0 1987,11.0 1988,17.0 1989,21.0 1990,20.0 1991,18.0 1992,20.0 1993,21.0 1994,19.0 1995,25.0 1996,33.0 1997,35.0 1998,34.0 1999,39.0 2000,41.0 2001,41.0 2002,44.0 2003,49.0 2004,50.0 2005,50.0 2006,48.0 2007,49.0 2008,49.0 2009,48.0 2010,47.0 2011,49.0 2012,50.0 2013,54.0 "
+         id="polyline355"
+         style="fill:none;stroke:#ff0000;stroke-width:0.5" />
+      <!-- ******************************* Fin des données ********************************** -->
+      <!-- Tracé du quadrillage -->
+      <use
+         xlink:href="#ligneVerticale"
+         transform="translate(1860,0)"
+         id="use2995"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#ligneVerticale"
+         transform="translate(1880,0)"
+         id="use2997"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#ligneVerticale"
+         transform="translate(1900,0)"
+         id="use2999"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#ligneVerticale"
+         transform="translate(1920,0)"
+         id="use3001"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#ligneVerticale"
+         transform="translate(1940,0)"
+         id="use3003"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#ligneVerticale"
+         transform="translate(1960,0)"
+         id="use3005"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#ligneVerticale"
+         transform="translate(1980,0)"
+         id="use3007"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#ligneVerticale"
+         transform="translate(2000,0)"
+         id="use3009"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#ligneVerticale"
+         transform="translate(2020,0)"
+         id="use3011"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#ligneHorizontale"
+         transform="translate(0,-60)"
+         id="use3013"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#ligneHorizontale"
+         transform="translate(0,-40)"
+         id="use3015"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#ligneHorizontale"
+         transform="translate(0,-20)"
+         id="use3017"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#ligneHorizontale"
+         id="use3019"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#ligneHorizontale"
+         transform="translate(0,20)"
+         id="use3021"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#ligneHorizontale"
+         transform="translate(0,40)"
+         id="use3023"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#ligneHorizontale"
+         transform="translate(0,60)"
+         id="use3025"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#ligneHorizontale"
+         transform="translate(0,80)"
+         id="use3027"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         xlink:href="#ligneHorizontale"
+         transform="translate(0,100)"
+         id="use3029"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <!-- Affichage des unités des axes -->
+      <text
+         x="1854"
+         y="0"
+         font-size="6"
+         transform="matrix(1,0,0,-1,0,-70)"
+         id="text3031"
+         style="font-size:6px">1860</text>
+      <text
+         x="1874"
+         y="0"
+         font-size="6"
+         transform="matrix(1,0,0,-1,0,-70)"
+         id="text3033"
+         style="font-size:6px">1880</text>
+      <text
+         x="1894"
+         y="0"
+         font-size="6"
+         transform="matrix(1,0,0,-1,0,-70)"
+         id="text3035"
+         style="font-size:6px">1900</text>
+      <text
+         x="1914"
+         y="0"
+         font-size="6"
+         transform="matrix(1,0,0,-1,0,-70)"
+         id="text3037"
+         style="font-size:6px">1920</text>
+      <text
+         x="1934"
+         y="0"
+         font-size="6"
+         transform="matrix(1,0,0,-1,0,-70)"
+         id="text3039"
+         style="font-size:6px">1940</text>
+      <text
+         x="1954"
+         y="0"
+         font-size="6"
+         transform="matrix(1,0,0,-1,0,-70)"
+         id="text3041"
+         style="font-size:6px">1960</text>
+      <text
+         x="1974"
+         y="0"
+         font-size="6"
+         transform="matrix(1,0,0,-1,0,-70)"
+         id="text3043"
+         style="font-size:6px">1980</text>
+      <text
+         x="1994"
+         y="0"
+         font-size="6"
+         transform="matrix(1,0,0,-1,0,-70)"
+         id="text3045"
+         style="font-size:6px">2000</text>
+      <text
+         x="2014"
+         y="0"
+         font-size="6"
+         transform="matrix(1,0,0,-1,0,-70)"
+         id="text3047"
+         style="font-size:6px">2020</text>
+      <text
+         x="1835"
+         y="-100"
+         font-size="6"
+         transform="matrix(1,0,0,-1,0,-2)"
+         id="text3100"
+         style="font-size:6px">1.0</text>
+      <text
+         x="1835"
+         y="-80"
+         font-size="6"
+         transform="matrix(1,0,0,-1,0,-2)"
+         id="text3080"
+         style="font-size:6px">0.8</text>
+      <text
+         x="1835"
+         y="-60"
+         font-size="6"
+         transform="matrix(1,0,0,-1,0,-2)"
+         id="text3049"
+         style="font-size:6px">0.6</text>
+      <text
+         x="1835"
+         y="-40"
+         font-size="6"
+         transform="matrix(1,0,0,-1,0,-2)"
+         id="text3051"
+         style="font-size:6px">0.4</text>
+      <text
+         x="1835"
+         y="-20"
+         font-size="6"
+         transform="matrix(1,0,0,-1,0,-2)"
+         id="text3053"
+         style="font-size:6px">0.2</text>
+      <text
+         x="1835"
+         y="0"
+         font-size="6"
+         transform="matrix(1,0,0,-1,0,-2)"
+         id="text3055"
+         style="font-size:6px">0.0</text>
+      <text
+         x="1833"
+         y="20"
+         font-size="6"
+         transform="matrix(1,0,0,-1,0,-2)"
+         id="text3057"
+         style="font-size:6px">-0.2</text>
+      <text
+         x="1833"
+         y="40"
+         font-size="6"
+         transform="matrix(1,0,0,-1,0,-2)"
+         id="text3059"
+         style="font-size:6px">-0.4</text>
+      <text
+         x="1833"
+         y="60"
+         font-size="6"
+         transform="matrix(1,0,0,-1,0,-2)"
+         id="text3061"
+         style="font-size:6px">-0.6</text>
+    </g>
+  </svg>
+  <rect
+     style="fill:#ffffff;stroke:#000000;stroke-width:0.95106721;stroke-opacity:1"
+     id="rect4531"
+     width="550.04895"
+     height="73.486435"
+     x="112.47552"
+     y="107.78803" />
+  <circle
+     cx="153.44562"
+     cy="128.37234"
+     id="ellipse2640"
+     r="2"
+     style="stroke:#0000ff" />
+  <text
+     x="193.44568"
+     y="133.37234"
+     font-size="20"
+     id="text2642"
+     style="font-size:20px">Anomalie annuelle</text>
+  <line
+     x1="133.44562"
+     x2="173.44568"
+     y1="158.37234"
+     y2="158.37234"
+     id="line2644"
+     style="stroke:#ff0000;stroke-width:2" />
+  <text
+     x="193.44568"
+     y="163.37234"
+     font-size="20"
+     id="text2646"
+     style="font-size:20px">Courbe lissée des anomalies de température</text>
+</svg>

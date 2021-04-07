@@ -1,0 +1,102 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<script src="js/gif.js" type="text/javascript"></script>
+<script src="js/gif.worker.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="style.css"  />
+</head>
+<body>
+
+
+<img id="result"></img>
+<script>
+let width = 90;
+let height= 100;
+let canvas = document.createElement('canvas')
+canvas.width = width;
+canvas.height = height;
+
+let ctx = canvas.getContext('2d')
+
+let gif = new GIF({
+  workers: 1,
+  workerScript: "js/gif.worker.js",
+  quality: 10,
+  width: width,
+  height: height
+});
+
+ctx.font = "30px Arial";
+
+let y1 = 30;
+let y2 = 90;
+let ymoy = (y1 + y2)/2
+let yrange = y2 - ymoy;
+function drawFrame(t)
+{
+
+  ctx.fillStyle = "white";
+  ctx.fillRect(0, 0, width, height);
+
+  if(t==1)
+    ctx.fillStyle = "green";
+  else
+    ctx.fillStyle = "black";
+
+  ctx.fillText("+3", 35, y1+t*yrange);
+  ctx.fillText("2+", 20, y2-t*yrange);
+
+
+
+  if(t == 1)
+  {
+
+    ctx.fillText("2", 20, y1+t*yrange);
+    ctx.fillText("3", 53, y2-t*yrange);
+  }
+  else
+  {
+      ctx.fillStyle = "CornflowerBlue";
+      ctx.fillText("x", 20, y1+t*yrange);
+      ctx.fillText("y", 53, y2-t*yrange);
+  }
+}
+
+
+
+drawFrame(0);
+
+
+gif.addFrame(ctx, {copy: true, delay:1000});
+
+
+for(let t = 0; t < 1; t+=0.1)
+{
+  drawFrame(t);
+  gif.addFrame(ctx, {copy: true, delay: 50});
+}
+// or a canvas element
+
+
+drawFrame(1);
+gif.addFrame(ctx, {copy: true, delay: 1000});
+
+
+gif.on('finished', function(blob) {
+  document.getElementById("result").src = URL.createObjectURL(blob);
+  //window.open(URL.createObjectURL(blob));
+});
+
+gif.render();
+
+
+
+</script>
+
+
+
+
+
+</body>
+</html>

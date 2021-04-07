@@ -1,0 +1,89 @@
+\documentclass[tikz,convert={outext=.svg,command=\unexpanded{pdftopng \infile\space\outfile}},multi=false]{standalone}
+\usepackage[utf8]{inputenc}
+
+\makeatletter
+\pgfdeclareradialshading[tikz@ball]{ball}{\pgfqpoint{-10bp}{10bp}}{%
+	color(0bp)=(tikz@ball!0!white);
+	color(20bp)=(tikz@ball!50!white);
+	color(25bp)=(tikz@ball);
+	color(30bp)=(tikz@ball!80!black)
+}
+\makeatother
+
+
+\begin{document}
+
+\newenvironment{hadron}{
+	\begin{tikzpicture}
+	\draw[ball color=gray, draw=none] (0, 0) circle (1cm and 1cm);
+}{
+	\end{tikzpicture}
+}
+
+\newcommand{\quark}[4]{\draw[ball color=#3, draw=none] (#1, #2) circle (3.5mm and 3.5mm);
+\node at (#1, #2) {\large \ensuremath{#4}};}
+
+\begin{tikzpicture}
+\node at (0, 0) {
+	\begin{tabular}{p{1.5cm}lp{1.5cm}l}
+\begin{hadron}
+\quark{-0.3}{0.4}{red}{u}
+\quark{-0.4}{-0.4}{blue}{u}
+\quark{0.4}{0}{green}{d}
+\end{hadron} & Proton & 
+
+\begin{hadron}
+\quark{-0.3}{0.4}{blue}{\bar u}
+\quark{-0.4}{-0.4}{green}{\bar u}
+\quark{0.4}{0}{red}{\bar d}
+\end{hadron}
+& Anti-proton \\
+
+\begin{hadron}
+\quark{-0.3}{0.4}{green}{u}
+\quark{-0.4}{-0.4}{blue}{d}
+\quark{0.4}{0}{red}{d}
+\end{hadron} & Neutron & 
+
+\begin{hadron}
+\quark{-0.3}{0.4}{blue}{u}
+\quark{-0.4}{-0.4}{green}{s}
+\quark{0.4}{0}{red}{d}
+\end{hadron}
+& Lambda
+\\
+
+\begin{hadron}
+\quark{-0.4}{-0.4}{blue}{\bar d}
+\quark{0.5}{0.1}{blue}{u}
+\end{hadron}
+& Pion chargé $\pi^+$ 
+
+& 
+
+\begin{hadron}
+\quark{-0.4}{-0.4}{green}{d}
+\quark{0.5}{0.1}{green}{\bar s}
+\end{hadron}
+& Kaon neutre $K^0$ \\
+
+
+\begin{hadron}
+\quark{-0.4}{-0.4}{red}{\bar b}
+\quark{0.5}{0.1}{red}{d}
+\end{hadron}
+& Méson $B^0$ & 
+
+
+\begin{hadron}
+\quark{-0.4}{-0.4}{blue}{\bar c}
+\quark{0.5}{0.1}{blue}{c}
+\end{hadron}
+& $J/\psi$ 
+
+\end{tabular}
+};
+\end{tikzpicture}
+
+
+\end{document}

@@ -1,0 +1,18 @@
+\begin{tikzpicture}
+\tikzstyle{point} = [draw, inner sep=0.5mm, circle, fill=blue, blue]
+\draw (-3, 1) edge[-latex] (-3, 5.5);
+\draw (-3.5, 2) edge[-latex] (6, 2);
+\draw[line width=.8pt ,smooth, orange]%
+(-2.5, 1.5) .. controls (-2, 4.5) and (-1, 2.5) .. (-0.5, 2.5)%
+.. controls (0, 2.5) and (0.5, 2.5) .. (1, 2.5)%
+.. controls (1.5, 2.5) and (2, 6.5) .. (3, 3.5)
+.. controls (4, 1) and (4, 2) .. (4.5, 1);
+
+\draw[dotted] (-0.5, 2.5) edge (-3, 2.5);
+\draw[dotted] (2.5, 4.6) edge (-3, 4.6);
+\draw[dotted] (-1.5, 3.14) edge (-3, 3.14);
+
+\node[point] at (-3, 2.5) {};
+\node[point] at (-3, 4.6) {};
+\node[point] at (-3, 3.14) {};
+\end{tikzpicture}
